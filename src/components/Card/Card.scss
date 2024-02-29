@@ -11,9 +11,9 @@ $transitionZ: var(--tZ);
      //  justify-content: center;
      //  align-items: center;
      transform: translate3d(
-               calc(var(--offset) * -3px * var(--side)),
-               calc(var(--offset) * 5px),
-               calc(#{$transitionZ} * -100px)
+               calc(var(--offset) * -6px * var(--side)),
+               calc(var(--offset) * 10px),
+               calc(#{$transitionZ} * -200px)
           )
           rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg))
           rotateZ(calc(var(--rZ) * 1deg));

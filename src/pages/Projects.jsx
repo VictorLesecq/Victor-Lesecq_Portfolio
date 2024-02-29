@@ -4,8 +4,8 @@ const Projects = () => {
      return (
           <>
                <div className="w-32 h-32"></div>
-               <div className="grid grid-cols-7 grid-rows-[repeat(16,1fr)] max-w-3xl mx-auto">
-                    <Card
+               <div className="grid grid-cols-7 grid-rows-[repeat(16,1fr)] max-w-4xl mx-auto">
+                    {/* <Card
                          orientation={{
                               defaultRX: 30,
                               defaultRY: 10,
@@ -18,7 +18,7 @@ const Projects = () => {
                          }}
                          movement={false}
                          iteration={1}
-                    />
+                    /> */}
                     <Card
                          orientation={{
                               defaultRX: 20,
@@ -28,9 +28,9 @@ const Projects = () => {
                          }}
                          gridPosition={{
                               rowStart: 1,
-                              colStart: 5,
+                              colStart: 6,
                          }}
-                         movement={true}
+                         //  movement={true}
                          iteration={2}
                     />
                     <Card
@@ -44,7 +44,7 @@ const Projects = () => {
                               rowStart: 5,
                               colStart: 1,
                          }}
-                         movement={true}
+                         //  movement={true}
                          iteration={2}
                     />
                     <Card
@@ -55,10 +55,10 @@ const Projects = () => {
                               defaultRZ: 25,
                          }}
                          gridPosition={{
-                              rowStart: 9,
-                              colStart: 5,
+                              rowStart: 10,
+                              colStart: 7,
                          }}
-                         movement={true}
+                         //  movement={true}
                          iteration={2}
                     />
                </div>

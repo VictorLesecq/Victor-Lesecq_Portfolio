@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Card.scss';
 
 function ParallaxTiltEffect(props) {
-     const { orientation, gridPosition, movement, iteration } = props;
+     const { orientation, gridPosition, iteration } = props;
      const defaultRX = orientation.defaultRX;
      const defaultRY = orientation.defaultRY;
      const defaultOffset = orientation.defaultOffset;
@@ -14,31 +14,25 @@ function ParallaxTiltEffect(props) {
      const containerRef = useRef(null);
 
      const handleMouseMove = (event) => {
-          if (movement) {
-               const rect = event.target.getBoundingClientRect();
-               let rX = -(event.clientX - rect.left - rect.width / 2) / 8;
-               let rY = (event.clientY - rect.top - rect.height / 2) / 8;
+          const rect = event.target.getBoundingClientRect();
+          let rX = -(event.clientX - rect.left - rect.width / 2) / 8;
+          let rY = (event.clientY - rect.top - rect.height / 2) / 8;
 
-               setProperty('--rY', rX.toFixed(2));
-               setProperty('--rX', rY.toFixed(2));
+          setProperty('--rY', rX.toFixed(2));
+          setProperty('--rX', rY.toFixed(2));
 
-               setProperty('--bY', `${80 - (rX / 16).toFixed(2)}%`);
-               setProperty('--bX', `${50 - (rY / 16).toFixed(2)}%`);
-          }
+          setProperty('--bY', `${80 - (rX / 16).toFixed(2)}%`);
+          setProperty('--bX', `${50 - (rY / 16).toFixed(2)}%`);
      };
 
      const handleMouseEnter = () => {
-          if (movement) {
-               setMouseOnComponent(true);
-               containerRef.current.classList.add('container--active');
-          }
+          setMouseOnComponent(true);
+          containerRef.current.classList.add('container--active');
      };
 
      const handleMouseLeave = () => {
-          if (movement) {
-               setMouseOnComponent(false);
-               defaultStates();
-          }
+          setMouseOnComponent(false);
+          defaultStates();
      };
 
      const defaultStates = () => {
@@ -74,7 +68,7 @@ function ParallaxTiltEffect(props) {
                cards.push(
                     <div
                          key={i}
-                         className="card absolute w-[200px] h-[300px] text-white"
+                         className="card absolute w-[300px] h-[450px] text-white"
                          style={{
                               '--bX': '50%',
                               '--bY': '80%',
@@ -105,7 +99,7 @@ function ParallaxTiltEffect(props) {
                     }}
                >
                     <div
-                         className="card absolute w-[200px] h-[300px] text-white"
+                         className="card absolute w-[300px] h-[450px] text-white"
                          ref={containerRef}
                          onMouseEnter={handleMouseEnter}
                          onMouseMove={handleMouseMove}

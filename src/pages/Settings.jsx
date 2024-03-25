@@ -1,11 +1,11 @@
-import Card from '../components/Card/Card';
+import Card2 from '../components/Card2/Card2';
 
-const Projects = () => {
+const Settings = () => {
      return (
           <>
                <div className="w-32 h-32"></div>
-               <div className="grid grid-cols-7 grid-rows-[repeat(16,1fr)] max-w-5xl mx-auto">
-                    <Card
+               <div className="cards_container grid grid-cols-7 grid-rows-[repeat(16,100px)] max-w-5xl mx-auto">
+                    <Card2
                          orientation={{
                               defaultRX: 20,
                               defaultRY: -20,
@@ -19,7 +19,7 @@ const Projects = () => {
                          projectId="c67ab8a7"
                          iteration={2}
                     />
-                    <Card
+                    <Card2
                          orientation={{
                               defaultRX: 30,
                               defaultRY: 20,
@@ -33,7 +33,7 @@ const Projects = () => {
                          projectId="b9123946"
                          iteration={1}
                     />
-                    <Card
+                    <Card2
                          orientation={{
                               defaultRX: 25,
                               defaultRY: -20,
@@ -47,7 +47,7 @@ const Projects = () => {
                          projectId="46d188c5"
                          iteration={1}
                     />
-                    <Card
+                    <Card2
                          orientation={{
                               defaultRX: 20,
                               defaultRY: 10,
@@ -66,4 +66,4 @@ const Projects = () => {
      );
 };
 
-export default Projects;
+export default Settings;

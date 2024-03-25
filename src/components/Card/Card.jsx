@@ -2,6 +2,9 @@ import { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Card.scss';
 
+import { animated, useSpring } from 'react-spring';
+// import { useNavigate } from 'react-router-dom';
+
 function ParallaxTiltEffect(props) {
      const { orientation, gridPosition, iteration } = props;
      const defaultRX = orientation.defaultRX;
@@ -10,57 +13,98 @@ function ParallaxTiltEffect(props) {
      const defaultRZ = orientation.defaultRZ;
      const colStart = gridPosition.colStart;
      const rowStart = gridPosition.rowStart;
+     const side = Math.sign(defaultRY);
 
      const containerRef = useRef(null);
+     const [isClicked, setIsClicked] = useState(false);
+
+     const [transformProps, transformApi] = useSpring(() => ({
+          from: {
+               transform: `rotateX(${defaultRX}deg) rotateY(${defaultRY}deg) rotateZ(${defaultRZ}deg) translateZ(0px)`,
+          },
+     }));
+
+     const [bgPositionProps, bgPositionApi] = useSpring(() => ({
+          from: {
+               backgroundPositionX: '50%',
+               backgroundPositionY: '80%',
+               transform: 'translateX(0)',
+          },
+     }));
+
+     const [txtProps, txtApi] = useSpring(() => ({
+          from: {
+               transform: 'rotateZ(0deg)',
+          },
+     }));
 
      const handleMouseMove = (event) => {
-          const rect = event.target.getBoundingClientRect();
-          let rX = -(event.clientX - rect.left - rect.width / 2) / 8;
-          let rY = (event.clientY - rect.top - rect.height / 2) / 8;
+          if (!isClicked) {
+               const rect = event.target.getBoundingClientRect();
+               const rY = -(event.clientX - rect.left - rect.width / 2) / 8;
+               const rX = (event.clientY - rect.top - rect.height / 2) / 8;
 
-          setProperty('--rY', rX.toFixed(2));
-          setProperty('--rX', rY.toFixed(2));
+               transformApi.start({
+                    transform: `rotateX(${rX}deg) rotateY(${rY}deg) rotateZ(${defaultRZ}deg) translateZ(0px)`,
+               });
 
-          setProperty('--bY', `${80 - (rX / 16).toFixed(2)}%`);
-          setProperty('--bX', `${50 - (rY / 16).toFixed(2)}%`);
+               const bX = 50 - rY / 16;
+               const bY = 80 - rX / 16;
+
+               bgPositionApi.start({
+                    backgroundPositionX: `${bX}%`,
+                    backgroundPositionY: `${bY}%`,
+               });
+          }
      };
 
      const handleMouseEnter = () => {
-          setMouseOnComponent(true);
-          containerRef.current.classList.add('container--active');
+          if (!isClicked) {
+               setMouseOnComponent(true);
+               containerRef.current.classList.add('container--active');
+          }
      };
 
      const handleMouseLeave = () => {
-          setMouseOnComponent(false);
-          defaultStates();
+          if (!isClicked) {
+               setMouseOnComponent(false);
+               defaultStates();
+          }
      };
 
      const defaultStates = () => {
           containerRef.current.classList.remove('container--active');
-          setProperty('--rX', defaultRX);
-          setProperty('--rY', defaultRY);
-          setProperty('--bY', '80%');
-          setProperty('--bX', '50%');
-     };
+          containerRef.current.style.transformOrigin = 'center';
+          transformApi.start({
+               transform: `rotateX(${defaultRX}deg) rotateY(${defaultRY}deg) rotateZ(${defaultRZ}deg) translateZ(0px)`,
+          });
 
-     const setProperty = (p, v) => {
-          containerRef.current.style.setProperty(p, v);
+          bgPositionApi.start({
+               backgroundPositionX: `50%`,
+               backgroundPositionY: `80%`,
+          });
+
+          txtApi.start({
+               transform: 'rotateZ(0deg)',
+          });
      };
 
      const [, setMouseOnComponent] = useState(false);
 
      useEffect(() => {
           const container = containerRef.current;
-          container.addEventListener('mousemove', handleMouseMove);
-          container.addEventListener('mouseenter', handleMouseEnter);
-          container.addEventListener('mouseleave', handleMouseLeave);
+          if (!isClicked) {
+               container.addEventListener('mousemove', handleMouseMove);
+               container.addEventListener('mouseenter', handleMouseEnter);
+               container.addEventListener('mouseleave', handleMouseLeave);
+          }
 
           return () => {
                container.removeEventListener('mousemove', handleMouseMove);
                container.removeEventListener('mouseenter', handleMouseEnter);
                container.removeEventListener('mouseleave', handleMouseLeave);
           };
-     }, []);
+     }, [isClicked]);
 
      const generateCards = (count, defaultOffset) => {
           const cards = [];
@@ -70,13 +114,16 @@ function ParallaxTiltEffect(props) {
                          key={i}
                          className="card absolute w-[300px] h-[450px] text-white"
                          style={{
-                              '--bX': '50%',
-                              '--bY': '80%',
                               '--tZ': i,
                               '--offset': i * defaultOffset,
                          }}
                     >
-                         <div className="test h-full w-full rounded-3xl p-4">
+                         <div
+                              className="test h-full w-full rounded-3xl p-4"
+                              style={{
+                                   backgroundPosition: '50% 80%',
+                              }}
+                         >
                               Card {i}
                          </div>
                     </div>
@@ -85,38 +132,112 @@ function ParallaxTiltEffect(props) {
           return cards;
      };
 
+     // const navigate = useNavigate();
+
+     const handleClick = () => {
+          setIsClicked(true);
+          containerRef.current.removeEventListener(
+               'mousemove',
+               handleMouseMove
+          );
+          containerRef.current.removeEventListener(
+               'mouseenter',
+               handleMouseEnter
+          );
+          containerRef.current.removeEventListener(
+               'mouseleave',
+               handleMouseLeave
+          );
+
+          containerRef.current.style.transformOrigin =
+               side === 1 ? '100% 0%' : '0% 0%';
+
+          transformApi.start({
+               transform: `rotateX(0deg) rotateY(0deg) rotateZ(${
+                    -side * 90
+               }deg) translateZ(0px)`,
+          });
+
+          const halfWindowWidth = window.innerWidth;
+          let translateY;
+          const container = containerRef.current.getBoundingClientRect();
+          if (side === 1) {
+               translateY =
+                    halfWindowWidth -
+                    container.left -
+                    container.width -
+                    container.height / 2;
+          } else {
+               translateY =
+                    container.left - halfWindowWidth - container.height / 2;
+          }
+
+          bgPositionApi.start({
+               transform: `translateX(${
+                    side * containerRef.current.getBoundingClientRect().top
+               }px) translateY(${translateY}px)`,
+          });
+
+          txtApi.start({
+               transform: `rotateZ(${side * 90}deg)`,
+          });
+     };
+
      return (
           <>
                <div
-                    className="wrap cursor-pointer m-8"
+                    className="wrap cursor-pointer m-8 h-[200px]"
                     style={{
                          '--rX': defaultRX,
                          '--rY': defaultRY,
                          '--rZ': defaultRZ,
-                         '--side': Math.sign(defaultRY),
+                         '--side': side,
                          gridRowStart: rowStart,
                          gridColumnStart: colStart,
                     }}
                >
-                    <div
-                         className="card absolute w-[300px] h-[450px] text-white"
+                    {generateCards(iteration, defaultOffset)}
+               </div>
+               <div
+                    className="wrap cursor-pointer h-[200px] m-8"
+                    style={{
+                         '--rX': defaultRX,
+                         '--rY': defaultRY,
+                         '--rZ': defaultRZ,
+                         '--side': side,
+                         gridRowStart: rowStart,
+                         gridColumnStart: colStart,
+                    }}
+               >
+                    <animated.div
+                         onClick={handleClick}
+                         className="absolute w-[300px] h-[450px] text-white"
                          ref={containerRef}
                          onMouseEnter={handleMouseEnter}
                          onMouseMove={handleMouseMove}
                          onMouseLeave={handleMouseLeave}
                          style={{
-                              '--bX': '50%',
-                              '--bY': '80%',
-                              '--tZ': '0',
                               '--offset': 0,
+                              ...transformProps,
                          }}
                     >
-                         <div className="test h-full w-full rounded-3xl p-4">
-                              Card
-                         </div>
-                    </div>
-
-                    {generateCards(iteration, defaultOffset)}
+                         <animated.div
+                              className={`test w-full h-full rounded-3xl p-4 flex justify-center items-center ${
+                                   isClicked
+                                   // ? `${
+                                   //        side === 1
+                                   //             ? 'md:rounded-r-none'
+                                   //             : 'md:rounded-l-none'
+                                   //   }`
+                                   // : ''
+                              }`}
+                              style={{ ...bgPositionProps }}
+                         >
+                              <animated.div style={{ ...txtProps }}>
+                                   Card
+                              </animated.div>
+                         </animated.div>
+                    </animated.div>
                </div>
           </>
      );
@@ -135,6 +256,7 @@ ParallaxTiltEffect.propTypes = {
      }),
      movement: PropTypes.bool,
      iteration: PropTypes.number,
+     projectId: PropTypes.string,
 };
 
 export default ParallaxTiltEffect;

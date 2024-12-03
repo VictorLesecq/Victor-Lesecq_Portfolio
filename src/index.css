@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './utils/style/Fonts.scss';
+
+@import url('../src/assets/Fonts/TuskerGrotesk/stylesheet.css');
 
 @tailwind base;
 @tailwind components;
@@ -8,4 +11,20 @@
      .header {
           @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
      }
+
+     td {
+          @apply w-1/2 pb-6 align-top;
+     }
+}
+
+.rotate-3d {
+     transform: rotateY(180deg);
+}
+
+.z-up {
+     z-index: 10;
+}
+
+.cardFlip {
+     transform: rotateY(180deg);
 }

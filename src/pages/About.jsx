@@ -1,8 +1,17 @@
-
+import { useTheme } from '../utils/hooks/hooks';
 const About = () => {
-  return (
-    <div>About</div>
-  )
-}
+     const { theme, isLightColor, isDarkColor } = useTheme();
+     return (
+          <main
+               className=" overflow-hidden"
+               style={{
+                    backgroundColor:
+                         theme === 'light' ? isLightColor : isDarkColor,
+               }}
+          >
+               About
+          </main>
+     );
+};
 
-export default About
+export default About;

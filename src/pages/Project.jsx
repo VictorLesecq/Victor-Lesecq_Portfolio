@@ -1,7 +1,7 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { DataPortfolio, ProjectsList } from '../assets/data';
 // import Navbar from '../components/NavBar/Navbar';
-import pictureCardFront from '../assets/card-Back_90deg.png';
+import pictureCardFront from '/assets/Cards/card-Back_90deg.png';
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { useTheme } from '../utils/hooks/hooks';
@@ -402,7 +402,7 @@ const Project = () => {
                               to={`/project/${ProjectsList[nextProject].id}`}
                          >
                               <div className="relative flex justify-start items-center w-1/2">
-                                   <div className="absolute flex items-center overflow-hidden w-[32px] h-full">
+                                   <div className="hidden absolute md:flex items-center overflow-hidden w-[32px] h-full">
                                         <p className="text-4xl pb-2 -translate-x-6 group-hover:translate-x-2 ease-in-out duration-300">
                                              {'♠'}
                                         </p>

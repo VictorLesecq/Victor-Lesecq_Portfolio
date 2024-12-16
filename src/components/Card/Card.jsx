@@ -285,7 +285,7 @@ function Card({
                ? DataPortfolio[dataNum]
                : {
                       title: 'Default Title',
-                      picture: { card: 'src/assets/playing_card.jpg' },
+                      picture: { card: 'public/assets/Cards/playing_card.jpg' },
                  };
 
      function getRandomInt(min, max) {

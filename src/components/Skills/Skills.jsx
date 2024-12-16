@@ -3,7 +3,7 @@ import NodeLogo from '../../assets/nodejs-icon.svg';
 import MongoDBLogo from '../../assets/mongodb-icon.svg';
 import TailwindLogo from '../../assets/tailwindcss-icon.svg';
 import FigmaLogo from '../../assets/figma-icon.svg';
-import Excuse from '../../assets/Excuse.png';
+import Excuse from '/assets/Cards/Excuse.png';
 import { useTheme } from '../../utils/hooks/hooks';
 
 function Skills() {

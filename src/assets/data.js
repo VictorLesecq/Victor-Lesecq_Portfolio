@@ -1,8 +1,8 @@
-const SLPictures = '/src/assets/Project_Simon_Lesecq/SL_';
-const BookiPictures = '/src/assets/Projet_Booki/Booki_';
-const KasaPictures = '/src/assets/Projet_Kasa/Kasa_';
-const MVGPictures = '/src/assets/Projet_MVGrimoire/MVG_';
-const DMBCPictures = '/src/assets/Projet_DMBC/DMBC_';
+const SLPictures = '/assets/Project_Simon_Lesecq/SL_';
+const BookiPictures = '/assets/Projet_Booki/Booki_';
+const KasaPictures = '/assets/Projet_Kasa/Kasa_';
+const MVGPictures = '/assets/Projet_MVGrimoire/MVG_';
+const DMBCPictures = '/assets/Projet_DMBC/DMBC_';
 
 export const ColorPlaymat = {
      lightColor: {
@@ -114,8 +114,8 @@ export const DataPortfolio = [
      {
           id: 'Home',
           picture: {
-               card: '/src/assets/KingCard2.svg',
-               cardRot: '/src/assets/KingCard2_90deg.svg',
+               card: '/assets/Cards/KingCard2.svg',
+               cardRot: '/assets/Cards/KingCard2_90deg.svg',
           },
      },
      {
@@ -137,8 +137,8 @@ export const DataPortfolio = [
                third: { name: 'Roboto' },
           },
           picture: {
-               card: '/src/assets/AsOfSpades.svg',
-               cardRot: '/src/assets/AsOfSpades_90deg.svg',
+               card: '/assets/Cards/AsOfSpades.svg',
+               cardRot: '/assets/Cards/AsOfSpades_90deg.svg',
                home: SLPictures + 'top-page.png',
                fullPage: SLPictures + 'full-page.png',
                mobile: SLPictures + 'full-page_mobile.png',
@@ -165,8 +165,8 @@ export const DataPortfolio = [
                third: { name: 'Roboto' },
           },
           picture: {
-               card: '/src/assets/AsOfHearts.svg',
-               cardRot: '/src/assets/AsOfHearts_90deg.svg',
+               card: '/assets/Cards/AsOfHearts.svg',
+               cardRot: '/assets/Cards/AsOfHearts_90deg.svg',
                home: DMBCPictures + 'top-page.png',
                fullPage: DMBCPictures + 'full-page.png',
                mobile: DMBCPictures + 'full-page_mobile.png',
@@ -193,8 +193,8 @@ export const DataPortfolio = [
                first: { name: 'raleway' },
           },
           picture: {
-               card: '/src/assets/AsOfDiamonds.svg',
-               cardRot: '/src/assets/AsOfDiamonds_90deg.svg',
+               card: '/assets/Cards/AsOfDiamonds.svg',
+               cardRot: '/assets/Cards/AsOfDiamonds_90deg.svg',
                home: BookiPictures + 'top-page.png',
                fullPage: BookiPictures + 'full-page.png',
                mobile: BookiPictures + 'full-page_mobile.png',
@@ -222,8 +222,8 @@ export const DataPortfolio = [
                first: { name: 'Montserrat' },
           },
           picture: {
-               card: '/src/assets/QueenOfSpadesCard.svg',
-               cardRot: '/src/assets/QueenOfSpadesCard_90deg.svg',
+               card: '/assets/Cards/QueenOfSpadesCard.svg',
+               cardRot: '/assets/Cards/QueenOfSpadesCard_90deg.svg',
                home: KasaPictures + 'top-page.png',
                fullPage: KasaPictures + 'full-page.png',
                mobile: KasaPictures + 'full-page_mobile.png',
@@ -251,8 +251,8 @@ export const DataPortfolio = [
                second: { name: 'DM Sans' },
           },
           picture: {
-               card: '/src/assets/AsOfClubs.svg',
-               cardRot: '/src/assets/AsOfClubs_90deg.svg',
+               card: '/assets/Cards/AsOfClubs.svg',
+               cardRot: '/assets/Cards/AsOfClubs_90deg.svg',
                home: MVGPictures + 'top-page.png',
                fullPage: MVGPictures + 'full-page.png',
                mobile: MVGPictures + 'full-page_mobile.png',
@@ -364,21 +364,21 @@ export const BackgroundCardList = [
 ];
 
 export const SuitImageList = [
-     '/src/assets/Diamonds.svg',
-     '/src/assets/Hearts.svg',
-     '/src/assets/Spades.svg',
-     '/src/assets/Clubs.svg',
+     '/assets/Diamonds.svg',
+     '/assets/Hearts.svg',
+     '/assets/Spades.svg',
+     '/assets/Clubs.svg',
 ];
 
 export const PictureFrontList = [
-     '/src/assets/JackOfHeartsCard.svg',
-     '/src/assets/JackOfClubsCard.svg',
-     '/src/assets/JackOfDiamondsCard.svg',
-     '/src/assets/JackOfSpadesCard.svg',
-     '/src/assets/QueenOfHeartsCard.svg',
-     '/src/assets/QueenOfClubsCard.svg',
-     '/src/assets/QueenOfDiamondsCard.svg',
-     '/src/assets/KingOfHeartsCard.svg',
-     '/src/assets/KingOfClubsCard.svg',
-     '/src/assets/KingOfDiamondsCard.svg',
+     '/assets/Cards/JackOfHeartsCard.svg',
+     '/assets/Cards/JackOfClubsCard.svg',
+     '/assets/Cards/JackOfDiamondsCard.svg',
+     '/assets/Cards/JackOfSpadesCard.svg',
+     '/assets/Cards/QueenOfHeartsCard.svg',
+     '/assets/Cards/QueenOfClubsCard.svg',
+     '/assets/Cards/QueenOfDiamondsCard.svg',
+     '/assets/Cards/KingOfHeartsCard.svg',
+     '/assets/Cards/KingOfClubsCard.svg',
+     '/assets/Cards/KingOfDiamondsCard.svg',
 ];

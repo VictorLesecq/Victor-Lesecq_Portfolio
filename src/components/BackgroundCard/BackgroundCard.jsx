@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import pictureBack from '../../assets/card-Back.png';
+import pictureBack from '/assets/Cards/card-Back.png';
 import { PictureFrontList } from '../../assets/data';
 import gsap from 'gsap';
 

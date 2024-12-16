@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../utils/hooks/hooks';
-import pictureCardFront from '../assets/KingCard2_90deg.svg';
+import pictureCardFront from '/assets/Cards/KingCard2_90deg.svg';
 import profilPicture from '../assets/photo_cv.jpg';
 import Card from '../components/Card/Card';
 import BackgroundCard from '../components/BackgroundCard/BackgroundCard';

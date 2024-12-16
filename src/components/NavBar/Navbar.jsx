@@ -2,8 +2,8 @@ import { useRef, useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '../../utils/hooks/hooks';
 import Modal from '../Modal/Modal';
-import JokerCard from '../../assets/JokerCard.svg';
-import JokerPicto from '../../assets/JokerPicto.png';
+import JokerCard from '/assets/Cards/JokerCard.svg';
+import JokerPicto from '/assets/JokerPicto.png';
 import gsap from 'gsap';
 
 const Navbar = () => {
